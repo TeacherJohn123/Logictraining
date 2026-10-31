@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新聞論述與邏輯判斷訓練網 (25題完整版)</title>
+    <title>新聞論述與邏輯判斷訓練網 (完整增強版)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome 圖示 -->
@@ -18,8 +18,8 @@
     <!-- 頁首 Header -->
     <header class="bg-indigo-700 text-white shadow-lg py-8 px-4">
         <div class="max-w-5xl mx-auto text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">📰 新聞論述與邏輯判斷訓練</h1>
-            <p class="text-indigo-200 text-sm md:text-base">掌握四種條件句型變體，輕鬆識別新聞與日常對話中的形式謬誤</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">📰 新聞論述與邏輯判斷訓練中心</h1>
+            <p class="text-indigo-200 text-sm md:text-base">掌握四種條件句型變體，並解構新聞與日常對話中的「前提謬誤」</p>
         </div>
     </header>
 
@@ -28,10 +28,10 @@
         <!-- 區塊 1：核心邏輯觀念說明 -->
         <section class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-slate-100">
             <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-3 mb-4">
-                🧠 核心邏輯架構指南
+                🧠 核心邏輯架構指南（形式邏輯）
             </h2>
             <p class="text-slate-600 mb-6 leading-relaxed">
-                在新聞報導與日常論述中，講者常會隱藏前提直接跳到結論。判斷邏輯關鍵在於先將句子還原為條件句：
+                在檢驗言論時，我們首先要看「推論過程」是否有效：
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -73,15 +73,18 @@
             </div>
         </section>
 
-        <!-- 區塊 2：學習模式切換頁籤與訓練區 -->
+        <!-- 區塊 2：多模式學習與訓練區 -->
         <section class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-slate-100">
             <!-- 模式切換按鈕 -->
-            <div class="flex border-b border-slate-200 mb-6">
-                <button onclick="switchMode('quiz')" id="tab-quiz" class="py-3 px-6 text-slate-500 font-medium tab-active flex items-center gap-2">
-                    <i class="fa-solid fa-gamepad"></i> 互動測驗模式
+            <div class="flex flex-wrap border-b border-slate-200 mb-6 gap-2">
+                <button onclick="switchMode('quiz')" id="tab-quiz" class="py-3 px-5 text-slate-500 font-medium tab-active flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i> 互動測驗 (25題)
                 </button>
-                <button onclick="switchMode('study')" id="tab-study" class="py-3 px-6 text-slate-500 font-medium flex items-center gap-2">
-                    <i class="fa-solid fa-book-open"></i> 全覽學習模式
+                <button onclick="switchMode('study')" id="tab-study" class="py-3 px-5 text-slate-500 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> 全覽學習與搜尋
+                </button>
+                <button onclick="switchMode('premise')" id="tab-premise" class="py-3 px-5 text-slate-500 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 前提錯誤專區 (20例)
                 </button>
             </div>
 
@@ -99,9 +102,7 @@
                     </div>
                 </div>
 
-                <div id="quiz-list" class="space-y-6">
-                    <!-- 動態渲染題目 -->
-                </div>
+                <div id="quiz-list" class="space-y-6"></div>
 
                 <div id="quiz-summary" class="hidden mt-8 p-6 bg-indigo-50 rounded-xl border border-indigo-200 text-center">
                     <h3 class="text-2xl font-extrabold text-indigo-900 mb-2">🎉 測驗完成！</h3>
@@ -123,13 +124,23 @@
                     </div>
                     <div class="flex gap-2">
                         <button onclick="setFilter('all')" id="btn-filter-all" class="px-4 py-2 text-xs font-bold rounded-lg bg-indigo-600 text-white">全部 (25)</button>
-                        <button onclick="setFilter('contrapositive')" id="btn-filter-valid" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">✅ 正確逆否命題</button>
+                        <button onclick="setFilter('contrapositive')" id="btn-filter-valid" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">✅ 正確逆否</button>
                         <button onclick="setFilter('fallacy')" id="btn-filter-invalid" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">❌ 形式謬誤</button>
                     </div>
                 </div>
 
-                <div id="study-list" class="grid grid-cols-1 gap-4">
-                    <!-- 動態渲染卡片 -->
+                <div id="study-list" class="grid grid-cols-1 gap-4"></div>
+            </div>
+
+            <!-- 前提錯誤專區面板 (新增加) -->
+            <div id="premise-panel" class="hidden space-y-8">
+                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-amber-900 text-sm">
+                    <h3 class="font-bold text-base mb-1"><i class="fa-solid fa-triangle-exclamation"></i> 什麼是「前提錯誤（非形式謬誤）」？</h3>
+                    <p>當推論過程（形式）看起來無懈可擊，但<strong>「基礎假設或前提本身就是假的、誘導性的、循環的或過度簡化的」</strong>時，整個論述在現實中依然成立無效。以下精選 4 種常見類型共 20 個生活與新聞實例：</p>
+                </div>
+
+                <div id="premise-categories-container" class="space-y-6">
+                    <!-- 動態渲染 4 大類前提錯誤 -->
                 </div>
             </div>
         </section>
@@ -162,9 +173,7 @@
                 一鍵生成四句型拆解與分析
             </button>
 
-            <div id="generated-output" class="mt-6 space-y-3 hidden">
-                <!-- 生成結果 -->
-            </div>
+            <div id="generated-output" class="mt-6 space-y-3 hidden"></div>
         </section>
 
     </main>
@@ -175,7 +184,7 @@
 
     <!-- JavaScript 腳本區塊 -->
     <script>
-        // Web Audio API 音效生成
+        // 音效
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playSound(type) {
             try {
@@ -183,26 +192,23 @@
                 const gain = audioCtx.createGain();
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
                 if (type === 'correct') {
-                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
-                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
                     gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
                     gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + 0.3);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
                 } else {
-                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
-                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1); // G3
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1);
                     gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
                     gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + 0.3);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
                 }
             } catch (e) {}
         }
 
-        // 25 題完整題庫
+        // 25 題形式邏輯題庫
         const questionsData = [
             { id: 1, cat: "新聞財經", text: "新聞標題：『最近企業營運成本普遍增加，這必然是因為政府今年調升了基本工資！』", a: "政府調升基本工資", b: "企業營運成本增加", type: "converse", exp: "犯了【逆命題 / 肯定後件謬誤】。成本增加(B)可能由電費或原物料上漲引起，不能單一歸因於調升工資(A)。" },
             { id: 2, cat: "教育科技", text: "專家指出：『若學生使用 iPad 輔助學習，自主學習動機就會提升。小明的學習動機完全沒有提升，說明他一定沒有使用 iPad 輔助學習。』", a: "使用 iPad 輔助學習", b: "自主學習動機提升", type: "contrapositive", exp: "屬於【逆否命題 (¬B → ¬A)】，邏輯『完全等價』！既然使用保證動機提升，沒提升即代表無使用效果。" },
@@ -231,20 +237,68 @@
             { id: 25, cat: "日常警語", text: "警語：『若喝酒就不能開車。老王現在正開著車，代表他絕對沒有喝酒。』", a: "喝酒", b: "不能開車", type: "contrapositive", exp: "屬於【逆否命題 (¬B → ¬A)】，邏輯完全等價！" }
         ];
 
+        // 4大類前提錯誤資料 (每類5題)
+        const premiseErrorData = [
+            {
+                typeTitle: "1. 假前提謬誤 (False Premise)",
+                desc: "論述的第一句話（基礎假設）在現實中根本不存在、不符合科學，或是張冠李戴。",
+                items: [
+                    { title: "健康迷思", text: "「既然吃肉會讓人立刻智力下降，我們就不應該允許小孩吃肉！」", analysis: "假前提：吃肉會讓人智力下降（毫無科學依據）。" },
+                    { title: "科技焦慮", text: "「只要每天用手機超過一小時，大腦就會長出結石，所以不能讓小孩碰手機。」", analysis: "假前提：手機使用過度會導致大腦長結石（醫學上不存在此現象）。" },
+                    { title: "陰謀論點", text: "「因為外星人已經控制了氣象局，所以最近的颱風路徑都是人造的。」", analysis: "假前提：外星人控制氣象局。" },
+                    { title: "飲食傳言", text: "「喝隔夜水會產生大量劇毒致癌物，大家千萬不要喝隔夜水。」", analysis: "假前提：隔夜水會產生劇毒致癌物（科學證實微量硝酸鹽不構成劇毒）。" },
+                    { title: "迷信傳說", text: "「只要月圓之夜出門，狼人就會攻擊你，所以中秋節絕對不能出門賞月。」", analysis: "假前提：狼人在月圓之夜存在並會攻擊人。" }
+                ]
+            },
+            {
+                typeTitle: "2. 複合問題謬誤 / 誘導性陷阱 (Loaded Question)",
+                desc: "講者在問句或前提中，偷偷塞了一個未經證實、甚至充滿偏見的隱藏前提，讓對方無論怎麼回答都中陷阱。",
+                items: [
+                    { title: "政論交鋒", text: "記者問政治人物：「你今天早上停止對對手的抹黑了嗎？」", analysis: "隱含假前提：你之前一直在抹黑對手。回答「是」或「否」都落入陷阱。" },
+                    { title: "家庭對話", text: "家長問小孩：「你今天又把零用錢花在哪裡亂買東西了？」", analysis: "隱含假前提：小孩的錢都拿去亂買東西。" },
+                    { title: "職場衝突", text: "同事問：「你為什麼總是在開會時故意唱反調？」", analysis: "隱含假前提：你總是故意唱反調。" },
+                    { title: "廣告話術", text: "廣告問卷：「你還要忍受傳統洗碗精殘留毒素多久？」", analysis: "隱含假前提：傳統洗碗精一定殘留毒素。" },
+                    { title: "主管考核", text: "主管問：「你這次專案遲交，是不是因為平常工作態度太散漫？」", analysis: "隱含假前提：平常工作態度散漫（忽略可能因人手不足或需求變更導致）。" }
+                ]
+            },
+            {
+                typeTitle: "3. 乞題謬誤 / 循環論證 (Begging the Question)",
+                desc: "把「需要被證明的事」直接當成「不需要證明的理所當然前提」塞進去，用結論來證明結論。",
+                items: [
+                    { title: "消費陷阱", text: "「這本投資理財書絕對是詐騙，因為所有教人快速致富的書都是騙人的！」", analysis: "循環論證：結論與前提互相循環，未提供獨立的客觀證據。" },
+                    { title: "神祕學說", text: "「靈媒說的話都是真的，因為她說她從不說謊。」", analysis: "循環論證：用靈媒自己的話來證明她不會說謊。" },
+                    { title: "職場評價", text: "「他是個誠實的人，因為正派的人絕對不會對別人說謊。」", analysis: "循環論證：假設他是正派的來證明他是誠實的。" },
+                    { title: "影評盲點", text: "「這部電影非常好看，因為每一個看過的人都覺得它精采絕倫。」", analysis: "把大眾覺得好看當作好看的定義，未說明具體優點。" },
+                    { title: "政策護航", text: "「政府實施的這項政策一定是對的，因為政府從不做對人民有害的事。」", analysis: "循環論證：用政府不害人來證明政策是對的。" }
+                ]
+            },
+            {
+                typeTitle: "4. 假兩難推理 (False Dilemma)",
+                desc: "刻意把世界簡化成「非黑即白」的兩個極端前提，完全忽略了中間還有各種多元的替代方案。",
+                items: [
+                    { title: "環保法案", text: "「如果你不支持我們黨提出的這項環保法案，就代表你根本不在乎地球、只想破壞環境！」", analysis: "忽略了反對者可能有更好的環保替代方案，強行二分。" },
+                    { title: "工作壓力", text: "「要嘛今天把所有工作做完，要嘛你就準備被公司開除！」", analysis: "忽略了可以跟主管申請延期或分階段完成。" },
+                    { title: "生涯規劃", text: "「如果你不學好程式設計，這輩子就只能當社會底層領低薪！」", analysis: "忽略了其他多元的職業發展與成功路徑。" },
+                    { title: "能源政策", text: "「我們只能選擇全面廢除核電，或者眼睜睜看著生態毀滅！」", analysis: "忽略了能源轉型與多元綠能組合的可能性。" },
+                    { title: "教養方式", text: "「要么贊成嚴格管束小孩的交友，要么就是放任小孩學壞！」", analysis: "忽略了透過溝通與引導建立自我約束的可能。" }
+                ]
+            }
+        ];
+
         let userAnswers = {};
         let currentFilter = 'all';
 
-        // 初始化與渲染
         function init() {
             renderQuiz();
             renderStudyCards();
+            renderPremiseCards();
             generateSentences();
         }
 
-        // 渲染測驗模式
+        // 渲染測驗
         function renderQuiz() {
             const list = document.getElementById('quiz-list');
-            list.innerHTML = questionsData.map((item, index) => `
+            list.innerHTML = questionsData.map((item) => `
                 <div class="border border-slate-200 rounded-xl p-5 bg-white shadow-sm" id="quiz-card-${item.id}">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
@@ -261,11 +315,9 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="options-${item.id}">
                         <button onclick="answerQuiz(${item.id}, 'contrapositive')" class="w-full text-left p-3 text-sm rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition flex items-center justify-between">
                             <span>✅ 正確推論 (逆否命題：¬B → ¬A)</span>
-                            <i class="fa-regular fa-circle text-slate-300"></i>
                         </button>
                         <button onclick="answerQuiz(${item.id}, 'fallacy')" class="w-full text-left p-3 text-sm rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition flex items-center justify-between">
                             <span>❌ 形式謬誤 (逆命題/否命題)</span>
-                            <i class="fa-regular fa-circle text-slate-300"></i>
                         </button>
                     </div>
 
@@ -274,19 +326,15 @@
             `).join('');
         }
 
-        // 答題邏輯
         function answerQuiz(id, choice) {
-            if (userAnswers[id]) return; // 已答過
-
+            if (userAnswers[id]) return;
             const item = questionsData.find(q => q.id === id);
             const isCorrectType = (item.type === 'contrapositive');
             const isUserRight = (choice === 'contrapositive' && isCorrectType) || (choice === 'fallacy' && !isCorrectType);
-            
             userAnswers[id] = isUserRight;
 
             const feedback = document.getElementById(`ans-feedback-${id}`);
             const buttons = document.querySelectorAll(`#options-${id} button`);
-            
             buttons.forEach(b => b.disabled = true);
 
             if (isUserRight) {
@@ -300,29 +348,20 @@
             }
             feedback.classList.remove('hidden');
 
-            // 更新計分與結算
             const answeredCount = Object.keys(userAnswers).length;
-            document.getElementById('score-counter').innerText = `進度：${answeredCount} / ${questionsData.length}`;
-
-            if (answeredCount === questionsData.length) {
-                showQuizSummary();
-            }
+            document.getElementById('score-counter').innerText = `進度：${answeredCount} / 25`;
+            if (answeredCount === questionsData.length) showQuizSummary();
         }
 
-        // 顯示結算
         function showQuizSummary() {
             const correctTotal = Object.values(userAnswers).filter(Boolean).length;
             const summary = document.getElementById('quiz-summary');
-            const scoreText = document.getElementById('summary-score');
-            const badgeText = document.getElementById('summary-badge');
-
-            scoreText.innerText = `最終得分：${correctTotal} / 25 題 (正確率 ${Math.round(correctTotal/25*100)}%)`;
-
-            if (correctTotal === 25) badgeText.innerText = "🏆 邏輯大師 (Perfect!)";
-            else if (correctTotal >= 20) badgeText.innerText = "🌟 邏輯專家 (Excellent)";
-            else if (correctTotal >= 15) badgeText.innerText = "👍 邏輯學習者 (Good)";
-            else badgeText.innerText = "💪 繼續加油！";
-
+            document.getElementById('summary-score').innerText = `最終得分：${correctTotal} / 25 題 (正確率 ${Math.round(correctTotal/25*100)}%)`;
+            const badge = document.getElementById('summary-badge');
+            if (correctTotal === 25) badge.innerText = "🏆 邏輯大師 (Perfect!)";
+            else if (correctTotal >= 20) badge.innerText = "🌟 邏輯專家 (Excellent)";
+            else if (correctTotal >= 15) badge.innerText = "👍 邏輯學習者 (Good)";
+            else badge.innerText = "💪 繼續加油！";
             summary.classList.remove('hidden');
         }
 
@@ -333,20 +372,15 @@
             renderQuiz();
         }
 
-        // 渲染全覽學習模式
+        // 渲染全覽學習卡片
         function renderStudyCards() {
             const list = document.getElementById('study-list');
             const searchText = document.getElementById('search-input')?.value.toLowerCase() || '';
-
             const filtered = questionsData.filter(item => {
                 const matchFilter = (currentFilter === 'all') ||
                     (currentFilter === 'contrapositive' && item.type === 'contrapositive') ||
                     (currentFilter === 'fallacy' && item.type !== 'contrapositive');
-                
-                const matchSearch = item.text.toLowerCase().includes(searchText) || 
-                                    item.cat.toLowerCase().includes(searchText) ||
-                                    item.exp.toLowerCase().includes(searchText);
-
+                const matchSearch = item.text.toLowerCase().includes(searchText) || item.cat.toLowerCase().includes(searchText);
                 return matchFilter && matchSearch;
             });
 
@@ -355,7 +389,7 @@
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-xs font-bold text-slate-500 bg-slate-200 px-2 py-0.5 rounded">#${item.id} ${item.cat}</span>
                         ${item.type === 'contrapositive' 
-                            ? '<span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">✅ 正確逆否命題</span>'
+                            ? '<span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">✅ 正確逆否</span>'
                             : '<span class="text-xs font-bold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full">❌ 形式謬誤</span>'}
                     </div>
                     <p class="text-slate-800 font-medium my-2 text-sm">${item.text}</p>
@@ -374,35 +408,60 @@
             if (type === 'all') document.getElementById('btn-filter-all').className = "px-4 py-2 text-xs font-bold rounded-lg bg-indigo-600 text-white";
             if (type === 'contrapositive') document.getElementById('btn-filter-valid').className = "px-4 py-2 text-xs font-bold rounded-lg bg-emerald-600 text-white";
             if (type === 'fallacy') document.getElementById('btn-filter-invalid').className = "px-4 py-2 text-xs font-bold rounded-lg bg-rose-600 text-white";
-            
             renderStudyCards();
         }
 
-        function filterStudyCards() {
-            renderStudyCards();
+        function filterStudyCards() { renderStudyCards(); }
+
+        // 渲染前提錯誤專區卡片
+        function renderPremiseCards() {
+            const container = document.getElementById('premise-categories-container');
+            container.innerHTML = premiseErrorData.map(cat => `
+                <div class="border border-slate-200 bg-white rounded-2xl p-6 card-shadow">
+                    <h3 class="text-lg font-bold text-indigo-900 border-b pb-2 mb-2">${cat.typeTitle}</h3>
+                    <p class="text-xs text-slate-500 mb-4">${cat.desc}</p>
+                    <div class="space-y-3">
+                        ${cat.items.map((item, idx) => `
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-1">
+                                    <span>範例 ${idx+1}：${item.title}</span>
+                                </div>
+                                <p class="text-slate-800 font-medium text-sm italic mb-2">${item.text}</p>
+                                <div class="text-xs bg-amber-50/70 border border-amber-100 text-amber-900 p-2 rounded">
+                                    <strong>🔍 缺陷拆解：</strong>${item.analysis}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
         }
 
         // 頁籤切換
         function switchMode(mode) {
-            const quizPanel = document.getElementById('quiz-panel');
-            const studyPanel = document.getElementById('study-panel');
-            const tabQuiz = document.getElementById('tab-quiz');
-            const tabStudy = document.getElementById('tab-study');
+            const panels = {
+                quiz: document.getElementById('quiz-panel'),
+                study: document.getElementById('study-panel'),
+                premise: document.getElementById('premise-panel')
+            };
+            const tabs = {
+                quiz: document.getElementById('tab-quiz'),
+                study: document.getElementById('tab-study'),
+                premise: document.getElementById('tab-premise')
+            };
 
-            if (mode === 'quiz') {
-                quizPanel.classList.remove('hidden');
-                studyPanel.classList.add('hidden');
-                tabQuiz.classList.add('tab-active');
-                tabStudy.classList.remove('tab-active');
-            } else {
-                quizPanel.classList.add('hidden');
-                studyPanel.classList.remove('hidden');
-                tabStudy.classList.add('tab-active');
-                tabQuiz.classList.remove('tab-active');
-            }
+            Object.keys(panels).forEach(key => {
+                if (key === mode) {
+                    panels[key].classList.remove('hidden');
+                    tabs[key].classList.add('tab-active');
+                } else {
+                    panels[key].classList.add('hidden');
+                    tabs[key].classList.remove('tab-active');
+                }
+            });
         }
 
-        // 自動生成器
+        // 生成器
         function generateSentences() {
             const a = document.getElementById('input-a').value.trim() || "A";
             const b = document.getElementById('input-b').value.trim() || "B";
