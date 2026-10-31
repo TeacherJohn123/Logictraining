@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新聞論述與邏輯判斷訓練網</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <!-- 頂部 Header -->
+    <header class="bg-indigo-700 text-white shadow-lg py-8 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">📰 新聞論述與邏輯判斷訓練</h1>
+            <p class="text-indigo-200 text-sm md:text-base">學會看穿媒體包裝，用四種句型拆解新聞謬誤</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+
+        <!-- 第一區塊：核心邏輯觀念說明 -->
+        <section class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-slate-100">
+            <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-3 mb-6">
+                🧠 核心邏輯架構指南
+            </h2>
+            <p class="text-slate-600 mb-6">在新聞報導與政論節目中，講者常使用模糊或強烈的語言包裝邏輯謬誤。判斷的核心在於將句子還原為條件句：</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 原命題 -->
+                <div class="p-5 rounded-xl border border-indigo-100 bg-indigo-50/50">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-indigo-900">1. 原命題 (Original)</span>
+                        <span class="px-2.5 py-1 text-xs font-semibold bg-indigo-200 text-indigo-800 rounded-full">基礎假設</span>
+                    </div>
+                    <p class="text-lg font-mono font-bold text-indigo-700 mb-1">若 A 則 B</p>
+                    <p class="text-sm text-slate-600">前提 A 成立時，結果 B 必然發生。</p>
+                </div>
+
+                <!-- 逆否命題 -->
+                <div class="p-5 rounded-xl border border-emerald-200 bg-emerald-50/60">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-emerald-900">2. 逆否命題 (Contrapositive)</span>
+                        <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-200 text-emerald-900 rounded-full">✅ 邏輯等價</span>
+                    </div>
+                    <p class="text-lg font-mono font-bold text-emerald-700 mb-1">若非 B 則非 A</p>
+                    <p class="text-sm text-slate-600">與原命題完全等價！結果沒發生，代表原因絕對不成立。</p>
+                </div>
+
+                <!-- 逆命題 -->
+                <div class="p-5 rounded-xl border border-amber-200 bg-amber-50/60">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-amber-900">3. 逆命題 (Converse)</span>
+                        <span class="px-2.5 py-1 text-xs font-semibold bg-amber-200 text-amber-900 rounded-full">❌ 肯定後件謬誤</span>
+                    </div>
+                    <p class="text-lg font-mono font-bold text-amber-700 mb-1">若 B 則 A</p>
+                    <p class="text-sm text-slate-600">新聞最常犯！看到結果 B，就反推一定是特定原因 A 導致的。</p>
+                </div>
+
+                <!-- 否命題 -->
+                <div class="p-5 rounded-xl border border-rose-200 bg-rose-50/60">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-rose-900">4. 否命題 (Inverse)</span>
+                        <span class="px-2.5 py-1 text-xs font-semibold bg-rose-200 text-rose-900 rounded-full">❌ 否定前件謬誤</span>
+                    </div>
+                    <p class="text-lg font-mono font-bold text-rose-700 mb-1">若非 A 則非 B</p>
+                    <p class="text-sm text-slate-600">以為沒有原因 A，結果 B 就絕對不會發生（忽視其他可能性）。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二區塊：新聞實戰練習 -->
+        <section class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-slate-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-3">
+                        🎙️ 新聞論述實戰辨析
+                    </h2>
+                    <p class="text-sm text-slate-500 mt-1">閱讀新聞論述，判斷其推論是否包含邏輯漏洞</p>
+                </div>
+                <div class="mt-4 md:mt-0 text-right">
+                    <span id="score-display" class="text-lg font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded-lg">得分：0 / 0</span>
+                </div>
+            </div>
+
+            <div id="quiz-container" class="space-y-6">
+                <!-- 動態生成題目 -->
+            </div>
+        </section>
+
+        <!-- 第三區塊：新聞句型自動生成器 -->
+        <section class="bg-slate-900 text-white rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-2xl font-bold border-l-4 border-indigo-400 pl-3 mb-4">
+                🛠️ 新聞句型拆解神器
+            </h2>
+            <p class="text-slate-300 text-sm mb-6">輸入任何新聞報導的原因與結果，自動生成四種邏輯句型與等價說明：</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">原因 (A)</label>
+                    <input type="text" id="input-a" value="政府大幅調升基本工資" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">結果 (B)</label>
+                    <input type="text" id="input-b" value="企業營運成本增加" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+            </div>
+
+            <button onclick="generateSentences()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-bold py-3 rounded-lg transition duration-200 shadow-md">
+                生成四句型拆解
+            </button>
+
+            <div id="generated-output" class="mt-6 space-y-3 hidden">
+                <!-- 拆解結果 -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 text-sm text-slate-400">
+        邏輯思維訓練工具 &copy; 2026
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                title: "【財經新聞】企業營運成本話題",
+                news: "「最近多數企業的營運成本普遍大幅增加，這必然是因為政府今年調升了基本工資所導致的！」",
+                a: "政府調升基本工資",
+                b: "企業營運成本增加",
+                correctAnswer: "converse",
+                explanation: "該論述看到結果『成本增加(B)』就直接推導回原因『調升工資(A)』，犯了【肯定後件謬誤（逆命題）】。因為原物料上漲或電費調漲也會導致成本增加。"
+            },
+            {
+                title: "【教育與科技】iPad 輔助教學成效",
+                news: "「如果學生使用 iPad 輔助學習，自主學習動機就會提升。小明的自主學習動機完全沒有提升，說明他一定沒有使用 iPad 輔助學習。」",
+                a: "使用 iPad 輔助學習",
+                b: "自主學習動機提升",
+                correctAnswer: "contrapositive",
+                explanation: "這段話屬於【逆否命題（若非 B 則非 A）】，在邏輯上與原前提『完全等價』！既然使用保證動機提升，那動機沒提升就必然代表沒有成功發揮使用效果。"
+            },
+            {
+                title: "【公共衛生】邊境封鎖政策",
+                news: "「某國目前已實施嚴格的邊境封鎖政策，可見當地一定爆發了大規模的傳染病疫情！」",
+                a: "爆發大規模傳染病",
+                b: "實施邊境封鎖政策",
+                correctAnswer: "converse",
+                explanation: "犯了【肯定後件謬誤（逆命題）】。封鎖政策(B)也可能是因應政治衝突、軍事演習或國安防範，不代表必然已發生疫情(A)。"
+            },
+            {
+                title: "【科技職場】AI 裁員潮討論",
+                news: "「這家科技大廠最近宣布裁撤了部分基層員工。新聞標題：『AI 正在瘋狂淘汰這個行業！該公司必然全面引進了 AI。』」",
+                a: "公司全面引進 AI",
+                b: "部分基層員工被裁員",
+                correctAnswer: "converse",
+                explanation: "媒體常將結果『裁員(B)』單一歸因於熱門話題『AI(A)』，這是典型的【肯定後件謬誤】。裁員可能源於虧損或業務轉型。"
+            }
+        ];
+
+        let answeredCount = 0;
+        let correctCount = 0;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((item, index) => `
+                <div class="border border-slate-200 rounded-xl p-5 bg-slate-50/50">
+                    <span class="text-xs font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-md mb-2 inline-block">${item.title}</span>
+                    <p class="text-slate-800 font-medium my-3 bg-white p-3 rounded-lg border border-slate-200 italic">
+                        ${item.news}
+                    </p>
+                    <div class="text-xs text-slate-500 mb-4">
+                        💡 設定前提：若 <strong>${item.a} (A)</strong>，則 <strong>${item.b} (B)</strong>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4" id="options-${index}">
+                        <button onclick="checkAnswer(${index}, 'contrapositive')" class="w-full text-left p-3 text-sm rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            ✅ 正確推論 (逆否命題：若非 B 則非 A)
+                        </button>
+                        <button onclick="checkAnswer(${index}, 'converse')" class="w-full text-left p-3 text-sm rounded-lg border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            ❌ 邏輯謬誤 (逆命題：若 B 則 A / 肯定後件)
+                        </button>
+                    </div>
+
+                    <div id="result-${index}" class="hidden p-4 rounded-lg text-sm mt-3"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer(index, choice) {
+            const item = quizData[index];
+            const resultDiv = document.getElementById(`result-${index}`);
+            const optionsDiv = document.getElementById(`options-${index}`);
+            
+            // 停用按鈕
+            const buttons = optionsDiv.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            answeredCount++;
+            if (choice === item.correctAnswer) {
+                correctCount++;
+                resultDiv.className = "p-4 rounded-lg text-sm mt-3 bg-emerald-100 text-emerald-900 border border-emerald-200";
+                resultDiv.innerHTML = `<strong>🎉 答對了！</strong><br>${item.explanation}`;
+            } else {
+                resultDiv.className = "p-4 rounded-lg text-sm mt-3 bg-rose-100 text-rose-900 border border-rose-200";
+                resultDiv.innerHTML = `<strong>💡 答錯囉！</strong><br>${item.explanation}`;
+            }
+            resultDiv.classList.remove('hidden');
+
+            document.getElementById('score-display').innerText = `得分：${correctCount} / ${answeredCount}`;
+        }
+
+        function generateSentences() {
+            const a = document.getElementById('input-a').value.trim() || "A";
+            const b = document.getElementById('input-b').value.trim() || "B";
+            const output = document.getElementById('generated-output');
+
+            output.innerHTML = `
+                <div class="p-4 bg-slate-800 rounded-lg border border-indigo-500/30 space-y-2 text-sm">
+                    <p class="text-indigo-300 font-bold">1. 原命題：</p>
+                    <p class="pl-4 text-white">如果<strong>${a}</strong>，那麼<strong>${b}</strong>。</p>
+
+                    <p class="text-emerald-400 font-bold pt-2">2. 逆否命題（✅ 邏輯完全等價）：</p>
+                    <p class="pl-4 text-white">如果沒有<strong>${b}</strong>，那麼就一定沒有<strong>${a}</strong>。</p>
+
+                    <p class="text-amber-400 font-bold pt-2">3. 逆命題（❌ 媒體常見：肯定後件謬誤）：</p>
+                    <p class="pl-4 text-white">如果發生了<strong>${b}</strong>，那麼一定是因為<strong>${a}</strong>。</p>
+
+                    <p class="text-rose-400 font-bold pt-2">4. 否命題（❌ 否定前件謬誤）：</p>
+                    <p class="pl-4 text-white">如果沒有<strong>${a}</strong>，那麼就一定不會發生<strong>${b}</strong>。</p>
+                </div>
+            `;
+            output.classList.remove('hidden');
+        }
+
+        window.onload = () => {
+            renderQuiz();
+            generateSentences();
+        };
+    </script>
+</body>
+</html>
